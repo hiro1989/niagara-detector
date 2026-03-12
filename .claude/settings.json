@@ -1,0 +1,54 @@
+{
+  "env": {
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
+  },
+  "permissions": {
+    "allow": [],
+    "deny": [
+      "NotebookEdit",
+      "mcp__ide__executeCode",
+      "Bash(curl:*)",
+      "Bash(git push --force-with-lease:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(rm -rf .)",
+      "Bash(rm -rf /)",
+      "Read(.env)",
+      "Read(**/.env)",
+      "Read(**/node_modules/**)",
+      "Read(**/pnpm-lock.yaml)",
+      "Read(node_modules/**)",
+      "Read(pnpm-lock.yaml)",
+      "Edit(.env*)",
+      "Edit(**/.env*)",
+      "Edit(**/node_modules/**)",
+      "Edit(**/pnpm-lock.yaml)",
+      "Edit(node_modules/**)",
+      "Edit(pnpm-lock.yaml)",
+      "Edit(pnpm-workspace.yaml)",
+      "MultiEdit(.env*)",
+      "MultiEdit(**/.env*)",
+      "MultiEdit(**/node_modules/**)",
+      "MultiEdit(**/pnpm-lock.yaml)",
+      "MultiEdit(node_modules/**)",
+      "MultiEdit(pnpm-lock.yaml)",
+      "MultiEdit(pnpm-workspace.yaml)",
+      "Write(.env*)",
+      "Write(**/.env*)",
+      "Write(**/node_modules/**)",
+      "Write(**/pnpm-lock.yaml)",
+      "Write(node_modules/**)",
+      "Write(pnpm-lock.yaml)",
+      "Write(pnpm-workspace.yaml)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(rm:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true
+  }
+}
