@@ -1,0 +1,31 @@
+{
+  "cSpell.diagnosticLevel": "Warning",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.readonlyInclude": {
+    "**/node_modules/**": true,
+    "**/pnpm-lock.yaml": true,
+    "**/pnpm-workspace.yaml": true,
+    ".venv": true,
+    "dist/**": true,
+    "src/**": true
+  },
+  "files.trimFinalNewlines": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.hg/store/**": true,
+    "dist/**": true
+  },
+  "oxc.enable": true,
+  "oxc.lint.run": "onSave",
+  "search.exclude": {
+    "dist": true
+  }
+}
