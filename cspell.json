@@ -3,9 +3,7 @@
   "version": "0.2",
   "language": "en",
   // words - list of words to be always considered correct
-  "words": [
-    "tsumiki"
-  ],
+  "words": ["oxfmt", "oxlint", "tsgolint", "tsumiki"],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
   "flagWords": []
