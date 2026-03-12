@@ -1,6 +1,7 @@
 {
   "name": "niagara-detector",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "lint": "run-s --continue-on-error lint:* lint-dry:tsc",
     "lint-dry": "run-s lint-dry:format lint-dry:oxlint lint-dry:eslint lint-dry:tsc",
@@ -9,7 +10,9 @@
     "lint-dry:tsc": "tsc --noEmit --pretty false",
     "lint:format": "oxfmt",
     "lint:oxlint": "oxlint --format unix . --max-warnings=0 --fix",
-    "start": "tsx src/index.ts"
+    "start": "tsx src/index.ts",
+    "test": "vitest run --no-color --reporter=dot --silent=passed-only",
+    "test-watch": "vitest --changed --root . --dir ."
   },
   "dependencies": {
     "tsx": "4.21.0"
@@ -21,7 +24,9 @@
     "oxfmt": "0.40.0",
     "oxlint": "1.55.0",
     "oxlint-tsgolint": "0.16.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite-tsconfig-paths": "6.1.1",
+    "vitest": "4.1.0"
   },
   "packageManager": "pnpm@10.30.3"
 }

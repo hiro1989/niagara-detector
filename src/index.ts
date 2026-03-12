@@ -1,1 +1,5 @@
-console.log("hello" as string)
+export const greet = (): string => {
+  return "hello"
+}
+
+console.log(greet())

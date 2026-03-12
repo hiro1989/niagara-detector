@@ -4,7 +4,10 @@
   "compilerOptions": {
     "module": "nodenext",
     "target": "esnext",
-    "types": ["node"],
+    "types": ["node", "vitest/globals"],
+    "paths": {
+      "#*": ["./src/*"]
+    },
     "noEmit": true,
     "moduleDetection": "force",
     "strict": true,
@@ -14,5 +17,6 @@
     "noUncheckedSideEffectImports": true,
     "skipLibCheck": true,
     "verbatimModuleSyntax": true
-  }
+  },
+  "include": ["src", "configs", "vite.config.ts"]
 }
