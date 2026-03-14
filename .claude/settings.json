@@ -43,7 +43,8 @@
       "Write(pnpm-lock.yaml)",
       "Write(pnpm-workspace.yaml)"
     ],
-    "ask": ["Bash(git push:*)", "Bash(rm:*)"]
+    "ask": ["Bash(git push:*)", "Bash(rm:*)"],
+    "defaultMode": "acceptEdits"
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
