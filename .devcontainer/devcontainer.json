@@ -1,0 +1,61 @@
+{
+  "name": "niagara-detector",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "options": ["-t", "niagara-detector:latest"]
+  },
+  "runArgs": ["--name", "niagara-detector", "--hostname", "niagara-detector"],
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "TZ": "Asia/Tokyo",
+    "LANG": "C.UTF-8",
+    // pnpm cache
+    "NPM_CONFIG_STORE_DIR": "/home/vscode/.pnpm-store"
+  },
+  "mounts": [
+    // pnpm cache
+    "source=pnpm-store,target=/home/vscode/.pnpm-store,type=volume",
+    // gh auth
+    "source=gh-config,target=/home/vscode/.config/gh,type=volume",
+    // claude auth (shared across devcontainers)
+    "source=claude-auth,target=/home/vscode/.claude-auth,type=volume",
+    // claude config and history (per project)
+    "source=niagara-detector-claude-home,target=/home/vscode/.claude,type=volume",
+    // bash history (per project)
+    "source=niagara-detector-bash-history,target=/home/vscode/.bash_persistent,type=volume"
+  ],
+  "features": {
+    "ghcr.io/devcontainers-extra/features/mise:1.0.0": {},
+    "ghcr.io/devcontainers/features/github-cli:1.1.0": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "arx8.copy-path-for-claude-code",
+        "mhutchie.git-graph",
+        "oxc.oxc-vscode",
+        "vitest.explorer"
+      ],
+      "settings": {
+        "terminal.integrated.enableVisualBell": true,
+        "accessibility.signals.terminalBell": {
+          "sound": "on",
+          "announcement": "auto"
+        }
+      }
+    }
+  },
+  "postCreateCommand": {
+    "fix-permissions": "sudo chown vscode:vscode /home/vscode/.pnpm-store /home/vscode/.config/gh /home/vscode/.claude /home/vscode/.claude-auth /home/vscode/.bash_persistent",
+    "claude": "curl -fsSL https://claude.ai/install.sh | bash",
+    "shell-customizations": "cat .devcontainer/shell-customizations.sh >> ~/.bashrc"
+  },
+  "updateContentCommand": {
+    "deps": "MISE_NODE_VERIFY=false mise install && sudo ln -sf $(mise which node) /usr/local/bin/node && mise exec -- corepack enable pnpm && mise exec -- corepack prepare --activate && mise exec -- pnpm install"
+  },
+  "postStartCommand": {
+    "claude": "claude update",
+    "claude-settings": "mkdir -p ~/.claude && cp .devcontainer/.claude/settings.json ~/.claude/settings.json && cp .devcontainer/.claude/statusline.sh ~/.claude/statusline.sh",
+    "claude-persist-auth": "test -f /home/vscode/.claude-auth/.claude.json && ln -sf /home/vscode/.claude-auth/.claude.json /home/vscode/.claude.json || cp /home/vscode/.claude.json /home/vscode/.claude-auth/.claude.json 2>/dev/null; ln -sf /home/vscode/.claude-auth/.claude.json /home/vscode/.claude.json"
+  }
+}
