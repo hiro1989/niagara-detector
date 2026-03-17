@@ -13,9 +13,11 @@
     "NPM_CONFIG_STORE_DIR": "/home/vscode/.pnpm-store"
   },
   "mounts": [
-    // pnpm cache
+    // git config (shared across host)
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
+    // pnpm cache (shared across devcontainers)
     "source=pnpm-store,target=/home/vscode/.pnpm-store,type=volume",
-    // gh auth
+    // gh auth (shared across devcontainers)
     "source=gh-config,target=/home/vscode/.config/gh,type=volume",
     // claude auth (shared across devcontainers)
     "source=claude-auth,target=/home/vscode/.claude-auth,type=volume",
@@ -25,6 +27,7 @@
     "source=niagara-detector-bash-history,target=/home/vscode/.bash_persistent,type=volume"
   ],
   "features": {
+    "ghcr.io/GeorgOfenbeck/features/lazygit-linuxbinary:1": {},
     "ghcr.io/devcontainers-extra/features/mise:1.0.0": {},
     "ghcr.io/devcontainers/features/github-cli:1.1.0": {}
   },
