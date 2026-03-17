@@ -13,8 +13,6 @@
     "NPM_CONFIG_STORE_DIR": "/home/vscode/.pnpm-store"
   },
   "mounts": [
-    // git config (shared across host)
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
     // pnpm cache (shared across devcontainers)
     "source=pnpm-store,target=/home/vscode/.pnpm-store,type=volume",
     // gh auth (shared across devcontainers)
@@ -59,6 +57,7 @@
   "postStartCommand": {
     "claude": "claude update",
     "claude-settings": "mkdir -p ~/.claude && cp .devcontainer/.claude/settings.json ~/.claude/settings.json && cp .devcontainer/.claude/statusline.sh ~/.claude/statusline.sh",
-    "claude-persist-auth": "test -f /home/vscode/.claude-auth/.claude.json && ln -sf /home/vscode/.claude-auth/.claude.json /home/vscode/.claude.json || cp /home/vscode/.claude.json /home/vscode/.claude-auth/.claude.json 2>/dev/null; ln -sf /home/vscode/.claude-auth/.claude.json /home/vscode/.claude.json"
+    "claude-persist-auth": "test -f /home/vscode/.claude-auth/.claude.json && ln -sf /home/vscode/.claude-auth/.claude.json /home/vscode/.claude.json || cp /home/vscode/.claude.json /home/vscode/.claude-auth/.claude.json 2>/dev/null; ln -sf /home/vscode/.claude-auth/.claude.json /home/vscode/.claude.json",
+    "git": "gh auth setup-git && git config --global user.name \"$(gh api user --jq .name)\" && git config --global user.email \"$(gh api user --jq '\"\\(.id)+\\(.login)@users.noreply.github.com\"')\""
   }
 }
