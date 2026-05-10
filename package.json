@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "lint": "run-s --continue-on-error lint:* lint-dry:tsc",
-    "lint-dry": "run-s lint-dry:format lint-dry:oxlint lint-dry:eslint lint-dry:tsc",
+    "lint": "run-s --continue-on-error lint:* lint-dry:tsgo",
+    "lint-dry": "run-s lint-dry:format lint-dry:oxlint lint-dry:tsgo",
     "lint-dry:format": "oxfmt --check",
     "lint-dry:oxlint": "oxlint --max-warnings=0 .",
-    "lint-dry:tsc": "tsc --noEmit --pretty false",
+    "lint-dry:tsgo": "tsgo --noEmit --pretty false",
     "lint:format": "oxfmt",
     "lint:oxlint": "oxlint --format unix . --max-warnings=0 --fix",
     "start": "tsx src/index.ts",
@@ -20,11 +20,11 @@
   "devDependencies": {
     "@tsconfig/strictest": "2.0.8",
     "@types/node": "24.x",
+    "@typescript/native-preview": "7.0.0-dev.20260506.1",
     "npm-run-all2": "8.0.4",
     "oxfmt": "0.40.0",
     "oxlint": "1.55.0",
     "oxlint-tsgolint": "0.16.0",
-    "typescript": "5.9.3",
     "vite-tsconfig-paths": "6.1.1",
     "vitest": "4.1.0"
   },

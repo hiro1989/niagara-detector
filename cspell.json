@@ -7,6 +7,7 @@
     "esbuild",
     "oxfmt",
     "oxlint",
+    "tsgo",
     "tsgolint",
     "tsumiki"
   ],
