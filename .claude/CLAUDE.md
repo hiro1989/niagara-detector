@@ -47,7 +47,8 @@ src/ # Source code
 # Run app
 pnpm start
 
-# Lint and format code
+# Run all static checks (lint, format, type check). Always use this instead of running any of them individually.
+# Use `pnpm lint` instead of: `pnpm tsc`, `tsc --noEmit`, `pnpm tsgo`, `pnpm format`, `pnpm prettier`, `pnpm eslint`, `eslint .`, etc.
 pnpm lint
 
 # Run tests
