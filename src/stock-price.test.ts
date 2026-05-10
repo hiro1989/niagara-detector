@@ -15,7 +15,7 @@ describe(fetchStockPrice, () => {
     quoteCombineMock.mockReset()
   })
 
-  it("returns regularMarketPrice for each symbol via quoteCombine", async () => {
+  it("returns ok with regularMarketPrice for each symbol via quoteCombine", async () => {
     // Arrange
     quoteCombineMock.mockImplementation(async (symbol) => {
       if (symbol === "AAPL") return { regularMarketPrice: 150.25 }
@@ -29,16 +29,17 @@ describe(fetchStockPrice, () => {
     // Assert
     expect(quoteCombineMock).toHaveBeenCalledWith("AAPL")
     expect(quoteCombineMock).toHaveBeenCalledWith("GOOG")
-    expect(result).toEqual({ AAPL: 150.25, GOOG: 2800.5 })
+    expect(result).toEqual({ ok: true, value: { AAPL: 150.25, GOOG: 2800.5 } })
   })
 
-  it("throws when regularMarketPrice is missing", async () => {
+  it("returns err when regularMarketPrice is missing", async () => {
     // Arrange
     quoteCombineMock.mockResolvedValue({})
 
-    // Act & Assert
-    await expect(fetchStockPrice(client)(["UNKNOWN"])).rejects.toThrow(
-      "No regularMarketPrice for UNKNOWN",
-    )
+    // Act
+    const result = await fetchStockPrice(client)(["UNKNOWN"])
+
+    // Assert
+    expect(result).toEqual({ ok: false, error: "No regularMarketPrice for UNKNOWN" })
   })
 })
