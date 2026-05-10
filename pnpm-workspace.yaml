@@ -1,2 +1,6 @@
-onlyBuiltDependencies:
-  - esbuild
+allowBuilds:
+  esbuild: true
+enableGlobalVirtualStore: true
+enablePrePostScripts: true
+minimumReleaseAge: 4320
+saveExact: true
