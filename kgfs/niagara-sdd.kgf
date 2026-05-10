@@ -1,0 +1,34 @@
+kgf 0.6
+language: niagara-sdd
+sources: .md, .markdown, .mdx
+
+=== lex
+SKIP        /(\s+)+/
+TOKEN HEADING     /^(?:#{1,6})(?=\s)/
+TOKEN INLINE_CODE /`([^`\n]+)`/
+TOKEN TEXT        /[^\s]+/
+
+=== grammar
+Doc -> ( Other )*
+Other -> TEXT
+
+=== features
+content_type: document
+detection_scope: overlay
+section_token: HEADING
+heading_text_tokens: TEXT, INLINE_CODE
+
+=== semantics
+on DocumentSection when startsWith(trim($title), "要件:") {
+  let req_id = concat("REQ-L", $line)
+  let req_title = trim(afterFirst($title, "要件:"))
+  let req_body = trim($body)
+  let upper = toUpper(req_body)
+  let normative = cond(containsStr(upper, "SHALL"), "SHALL", cond(containsStr(upper, "MUST"), "MUST", cond(containsStr(upper, "SHOULD"), "SHOULD")))
+  note document_requirement payload obj("id", req_id, "title", req_title, "description", req_body, "normative", normative, "line", $line, "end_line", $end_line)
+  bind ns "value" name "current_requirement" to req_id
+}
+
+on DocumentSection when eq(toLower(trim($title)), "受入条件") {
+  note document_requirement_criteria payload obj("parent_id", $scope("value", "current_requirement"), "criteria", collectLinesAfterPrefixes($body, "- [ ]", "- [x]", "-", "*", "1.", "2.", "3.", "4.", "5."), "line", $line, "end_line", $end_line)
+}
