@@ -10,9 +10,10 @@
     "lint-dry:tsgo": "tsgo --noEmit --pretty false",
     "lint:format": "oxfmt",
     "lint:oxlint": "oxlint --format unix . --max-warnings=0 --fix",
+    "lint:oxlint-fix-only": "oxlint --format unix . --fix > /dev/null 2>&1 || true",
     "start": "tsx src/index.ts",
-    "test-watch": "vitest --changed --root . --dir .",
     "test": "vitest run --no-color --reporter=dot --silent=passed-only",
+    "test-watch": "vitest --changed --root . --dir .",
     "tool:update-all-deps": "pnpm dlx npm-check-updates@22.1.0 --configFileName .ncurc.json"
   },
   "dependencies": {

@@ -16,3 +16,4 @@ registries:
 packages:
   - name: trkbt10/indexion@v0.13.0
     registry: local
+  - name: evilmartians/lefthook@v2.1.6

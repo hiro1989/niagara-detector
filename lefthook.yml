@@ -1,0 +1,23 @@
+glob_matcher: doublestar
+
+output:
+  - failure
+
+pre-commit:
+  piped: true
+  jobs:
+    - name: format
+      stage_fixed: true
+      glob: "**/*.{ts,tsx,js,jsx,json,css,html,md,mdx,yaml,yml}"
+      run: pnpm lint:format --no-error-on-unmatched-pattern -- {staged_files}
+
+    - name: lint
+      stage_fixed: true
+      glob: "**/*.{ts,tsx,js,jsx}"
+      run: pnpm lint:oxlint-fix-only {staged_files}
+
+    - name: lint-aqua
+      stage_fixed: true
+      glob: "{aqua.yaml,aqua-checksums.json}"
+      files: "git ls-files aqua.yaml aqua-checksums.json"
+      run: aqua update-checksum --prune
