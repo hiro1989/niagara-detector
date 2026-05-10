@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "lint": "run-s --continue-on-error lint:* lint-dry:tsgo",
-    "lint-dry": "run-s lint-dry:format lint-dry:oxlint lint-dry:tsgo",
+    "lint-dry": "run-s --continue-on-error lint-dry:format lint-dry:oxlint lint-dry:tsgo",
     "lint-dry:format": "oxfmt --check",
     "lint-dry:oxlint": "oxlint --max-warnings=0 .",
     "lint-dry:tsgo": "tsgo --noEmit --pretty false",
