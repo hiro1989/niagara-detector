@@ -1,0 +1,6 @@
+{
+  "$schema": "https://raw.githubusercontent.com/raineorshine/npm-check-updates/v22.1.1/src/types/RunOptions.json",
+  "cooldown": 3,
+  "reject": ["@types/node"],
+  "upgrade": true
+}
