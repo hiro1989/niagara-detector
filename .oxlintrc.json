@@ -17,30 +17,26 @@
       "files": ["**/*.test.ts"],
       "plugins": ["vitest"],
       "rules": {
-        "jest/valid-expect": [
+        "vitest/expect-expect": [
+          "error",
+          {
+            "assertFunctionNames": ["expect", "assert.*"]
+          }
+        ],
+        "vitest/max-expects": "off",
+        "vitest/prefer-lowercase-title": "off",
+        "vitest/prefer-to-be": "off",
+        "vitest/valid-expect": [
           "error",
           {
             "maxArgs": 2
           }
         ],
-        "jest/valid-title": "off",
-        "vitest/max-expects": "off",
-        "vitest/prefer-lowercase-title": "off",
-        "vitest/prefer-to-be": "off"
+        "vitest/valid-title": "off"
       }
     }
   ],
-  "plugins": [
-    "eslint",
-    "import",
-    "jsdoc",
-    "node",
-    "oxc",
-    "promise",
-    "typescript",
-    "unicorn",
-    "vitest"
-  ],
+  "plugins": ["eslint", "import", "jsdoc", "node", "oxc", "promise", "typescript", "unicorn"],
   "rules": {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "error",
