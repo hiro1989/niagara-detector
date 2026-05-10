@@ -1,16 +1,14 @@
 import { vi } from "vitest"
+import type YahooFinance from "yahoo-finance2"
 
-const quoteMock = vi.hoisted(() =>
-  vi.fn<(symbol: string) => Promise<{ regularMarketPrice?: number }>>(),
-)
+import { fetchStockPrice } from "#stock-price.js"
 
-vi.mock("yahoo-finance2", () => ({
-  default: function YahooFinance() {
-    return { quote: quoteMock }
-  },
-}))
+const quoteMock = vi.fn<(symbol: string) => Promise<{ regularMarketPrice?: number }>>()
 
-const { fetchStockPrice } = await import("#stock-price.js")
+// oxlint-disable-next-line typescript/no-unsafe-type-assertion
+const client = {
+  quote: quoteMock,
+} as unknown as InstanceType<typeof YahooFinance>
 
 describe(fetchStockPrice, () => {
   beforeEach(() => {
@@ -22,7 +20,7 @@ describe(fetchStockPrice, () => {
     quoteMock.mockResolvedValue({ regularMarketPrice: 150.25 })
 
     // Act
-    const result = await fetchStockPrice("AAPL")
+    const result = await fetchStockPrice(client)("AAPL")
 
     // Assert
     expect(quoteMock).toHaveBeenCalledWith("AAPL")
@@ -34,6 +32,8 @@ describe(fetchStockPrice, () => {
     quoteMock.mockResolvedValue({})
 
     // Act & Assert
-    await expect(fetchStockPrice("UNKNOWN")).rejects.toThrow("No regularMarketPrice for UNKNOWN")
+    await expect(fetchStockPrice(client)("UNKNOWN")).rejects.toThrow(
+      "No regularMarketPrice for UNKNOWN",
+    )
   })
 })
