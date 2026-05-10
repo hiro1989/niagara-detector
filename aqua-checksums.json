@@ -1,0 +1,24 @@
+{
+  "checksums": [
+    {
+      "id": "github_release/github.com/trkbt10/indexion/v0.13.0/indexion-darwin-arm64.tar.gz",
+      "checksum": "5DF16DD9126D70BE22C35C038B2EE377019E85219B7E41F02B9F20D1EC0CE518",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/trkbt10/indexion/v0.13.0/indexion-linux-x64.tar.gz",
+      "checksum": "6424E33C2FD95A13A4E01A95F349580F9C47D004629DD7728D6A88F7D38CC03B",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/trkbt10/indexion/v0.13.0/indexion-windows-x64.zip",
+      "checksum": "72BA123C8BEB634B34DAE105E8E753F558AEC4250568978A649332CE3D142633",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.493.0/registry.yaml",
+      "checksum": "9206387C4308E75D0B7F3F206BB14C94B9A2D453273CA2D792EC8CA99FC972B5",
+      "algorithm": "sha256"
+    }
+  ]
+}

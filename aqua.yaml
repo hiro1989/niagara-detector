@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/aqua-yaml.json
+# aqua - Declarative CLI Version Manager
+# https://aquaproj.github.io/
+checksum:
+  enabled: true
+  require_checksum: true
+  supported_envs:
+    - all
+registries:
+  - type: standard
+    ref: v4.493.0 # renovate: depName=aquaproj/aqua-registry
+  - type: local
+    name: local
+    path: aqua-registry.yaml
+packages:
+  - name: trkbt10/indexion@v0.13.0
+    registry: local

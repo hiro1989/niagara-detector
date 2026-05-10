@@ -63,10 +63,15 @@
       "Write(pnpm-lock.yaml)",
       "Write(pnpm-workspace.yaml)"
     ],
-    "ask": ["Bash(git push:*)", "Bash(git rebase:*)", "Bash(rm:*)"]
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Bash(rm:*)"
+    ]
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
-    "tsumiki@tsumiki": true
+    "indexion-skills@indexion-skills": true
   }
 }

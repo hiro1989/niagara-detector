@@ -1,0 +1,24 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: trkbt10
+    repo_name: indexion
+    description: A code indexer for source code search and navigation
+    asset: indexion-{{.OS}}-{{.Arch}}.{{.Format}}
+    format: tar.gz
+    replacements:
+      amd64: x64
+    supported_envs:
+      - darwin/arm64
+      - linux/amd64
+      - windows/amd64
+    files:
+      - name: indexion
+        src: indexion-{{.OS}}-{{.Arch}}/indexion
+    overrides:
+      - goos: windows
+        format: zip
+        files:
+          - name: indexion
+            src: indexion-{{.OS}}-{{.Arch}}/indexion.exe
