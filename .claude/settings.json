@@ -65,6 +65,19 @@
     ],
     "ask": ["Bash(git push:*)", "Bash(git reset:*)", "Bash(git rebase:*)", "Bash(rm:*)"]
   },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "OUT=$(pnpm lint:format 2>&1) || { echo \"$OUT\" >&2; exit 2; }; OUT=$(pnpm lint:oxlint-fix-only 2>&1) || { echo \"$OUT\" >&2; exit 2; }"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "indexion-skills@indexion-skills": true
