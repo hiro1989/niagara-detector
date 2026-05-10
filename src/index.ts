@@ -1,5 +1,5 @@
-export const greet = (): string => {
-  return "hello"
-}
+import { fetchStockPrice } from "#stock-price.js"
 
-console.log(greet())
+const symbol = "AAPL"
+const price = await fetchStockPrice(symbol)
+console.log(`${symbol}: ${price}`)
