@@ -3,7 +3,7 @@
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
   "permissions": {
-    "allow": [],
+    "allow": ["mcp__ide__getDiagnostics", "Bash(mkdir:*)", "Bash(tail:*)"],
     "deny": [
       "NotebookEdit",
       "mcp__ide__executeCode",
