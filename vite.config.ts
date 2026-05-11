@@ -13,7 +13,7 @@ export default defineConfig({
     environment: "node",
     globals: true,
     hookTimeout: 60_000,
-    include: ["src/**/*.test.ts"],
+    include: ["src/**/*.test.ts", "configs/**/*.test.ts"],
     setupFiles: ["./configs/test-setup.ts"],
   },
 })

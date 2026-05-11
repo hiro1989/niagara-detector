@@ -11,6 +11,7 @@
     "node": true
   },
   "ignorePatterns": ["dist"],
+  "jsPlugins": ["./configs/oxlint-plugins/no-throw-new-error.js"],
   "options": {
     "typeAware": true
   },
@@ -26,6 +27,8 @@
       // config files
       "files": ["configs/**/*"],
       "rules": {
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
         "import/unambiguous": "off",
         "no-process-env": "off"
@@ -148,6 +151,7 @@
     "import/no-namespace": "error",
     "import/no-unassigned-import": "off",
     "import/no-webpack-loader-syntax": "error",
+    "local/no-throw-new-error": "error",
     "no-case-declarations": "error",
     "no-empty": "error",
     "no-eq-null": "off",
